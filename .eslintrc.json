@@ -1,0 +1,10 @@
+{
+    "extends": "flying-sheep",
+    "parser": "typescript-eslint-parser",
+    "plugins": ["typescript"],
+    "rules": {
+        "no-console": 0,
+        "no-undef": 0,                  // typescript will complain itself
+        "typescript/no-unused-vars": 2  // mark vars as used
+    }
+}

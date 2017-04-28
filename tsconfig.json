@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"target": "es2015",
+		"lib": ["es2015"],
+		//stronger types
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
+		//more
+		"removeComments": true,
+		"sourceMap": true,
+		"declaration": true,
+		//custom typings
+		"baseUrl": ".",
+		"paths" : { "*": ["typings/*", "*"] },
+		"typeRoots": ["node_modules/@types", "typings"]
+	},
+	"include": ["index.ts"]
+}
