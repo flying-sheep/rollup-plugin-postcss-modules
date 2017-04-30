@@ -1,3 +1,4 @@
+import fs from 'mz/fs'
 import mkdirp from 'mkdirp-promise'
 import rmfr from 'rmfr'
 
@@ -29,6 +30,11 @@ ftest.each(async (t, { casePath, resultPath, match }) => {
 		dest: `${resultPath}/out.js`,
 		format: 'es',
 	})
+
+	const dPath = `${casePath}/in.css.d.ts`
+	if (await fs.exists(dPath)) {
+		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
+	}
 
 	return match()
 })

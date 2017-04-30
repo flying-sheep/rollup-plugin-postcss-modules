@@ -10,40 +10,43 @@ import { Plugin } from 'rollup'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Transformer } from 'postcss'
 
-export const formatCSSDefinition = (name: string, classNames: string[]) => `\
+const formatCSSDefinition = (name: string, classNames: string[]) => `\
 declare namespace ${name} {
 	${classNames.map(t => `const ${t}: string`).join('\n\t')}
 }
 export default ${name}`
 
-export function writeCSSDefinition(cssPath: string, classNames: string[]): Promise<string> {
+async function writeCSSDefinition(cssPath: string, classNames: string[]): Promise<string> {
 	const name = camelcase(path.basename(cssPath, '.css'))
 	const definition = formatCSSDefinition(name, classNames)
 	const dPath = `${cssPath}.d.ts`
-	return fs.writeFile(dPath, `${definition}\n`).then(() => dPath)
+	await fs.writeFile(dPath, `${definition}\n`)
+	return dPath
 }
 
-export class CSSExports {
-	writeDefinitions: boolean | ((dPath: string) => void)
+export type DefinitionCB = (dPath: string) => void | PromiseLike<void>
+
+class CSSExports {
+	writeDefinitions: boolean | DefinitionCB
 	exports: { [moduleName: string]: postcssModules.ExportTokens }
 
-	constructor(writeDefinitions: boolean | ((dPath: string) => void)) {
+	constructor(writeDefinitions: boolean | DefinitionCB) {
 		this.writeDefinitions = writeDefinitions
 		this.exports = {}
 	}
 	
-	definitionCB = (dPath: string) => {
+	definitionCB = async (dPath: string) => {
 		if (typeof this.writeDefinitions === 'function') {
-			this.writeDefinitions(dPath)
+			await Promise.resolve(this.writeDefinitions(dPath))
 		} else {
 			console.log(`${dPath} written`)
 		}
 	}
 	
-	getJSON = (id: string, exportTokens: postcssModules.ExportTokens) => {
+	getJSON = async (id: string, exportTokens: postcssModules.ExportTokens) => {
 		if (this.writeDefinitions) {
-			writeCSSDefinition(id, Object.keys(exportTokens))
-				.then(this.definitionCB)
+			const dPath = await writeCSSDefinition(id, Object.keys(exportTokens))
+			await this.definitionCB(dPath)
 		}
 		this.exports[id] = exportTokens
 	}
@@ -53,7 +56,7 @@ export class CSSExports {
 
 export interface Options extends postcss.Options {
 	/**  */
-	writeDefinitions?: boolean | ((dPath: string) => void)
+	writeDefinitions?: boolean | DefinitionCB
 	/** Options for postcss-modules */
 	modules?: postcssModules.Options
 }
