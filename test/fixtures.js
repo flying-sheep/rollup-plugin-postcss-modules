@@ -1,4 +1,3 @@
-import fs from 'mz/fs'
 import mkdirp from 'mkdirp-promise'
 import rmfr from 'rmfr'
 
