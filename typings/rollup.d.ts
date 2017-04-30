@@ -1,5 +1,6 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 
+import { Options as AcornOptions } from 'acorn'
 import { RawSourceMap } from 'source-map'
 
 export type Format = 'amd' | 'cjs' | 'es' | 'iife' | 'umd'
@@ -83,7 +84,7 @@ export interface Options {
 	/** Whether or not to apply tree-shaking. It's recommended that you omit this option (defaults to treeshake: true), unless you discover a bug caused by the tree-shaking algorithm in which case use treeshake: false once you've filed an issue! */
 	treeshake?: boolean
 	/** Any options that should be passed through to Acorn, such as reserved: true. */
-	acorn?: any // TODO
+	acorn?: AcornOptions
 	/** By default, the context of a module – i.e., the value of `this` at the top level – is `undefined`. In rare cases you might need to change this to something else, like `'window'`. */
 	context?: any
 	/** Same as `options.context`, but per-module. */
@@ -99,11 +100,11 @@ export interface Plugin {
 	/** a function that replaces or manipulates the options object passed to rollup.rollup */
 	options?: (options: Options) => Options
 	/** a custom loader. Returning null or undefined defers to other load functions (and eventually the default behavior of loading from the file system). */
-	load?: (id: string) => string | null | undefined
+	load?: (id: string) => string | null | undefined | { code: string, ast: any }
 	/** a custom resolver (useful for e.g. locating third-party dependencies). Returning null or undefined defers to other resolveId functions (and eventually the default resolution behavior); returning any other falsy value signals that importee should be treated as an external module and not included in the bundle. */
 	resolveId?: (importee: string, importer: string) => string | null | undefined | false | 0 | ''
 	/** a module transformer function */
-	transform?: (source: string, id: string) => string | { code: string, map: SourceMap }
+	transform?: (source: string, id: string) => string | { code: string, map: SourceMap, ast?: any }
 	/** a bundle transformer function */
 	transformBundle?: (source: string, options: { format: Format }) => string | { code: string, map: SourceMap }
 	/** Function hook called when bundle.generate() is being executed. */

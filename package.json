@@ -9,13 +9,21 @@
   "license": "GPL-3.0",
   "scripts": {
     "build": "tsc",
-    "test": "eslint index.ts",
-    "prepublishOnly": "npm run build && npm run test"
+    "start": "tsc --watch",
+    "test": "npm run eslint && npm run ava",
+    "prepublishOnly": "npm run build && npm run test",
+    "eslint": "eslint index.ts",
+    "ava": "ava"
   },
   "devDependencies": {
+    "@types/acorn": "^4.0.2",
     "@types/camelcase": "^0.0.30",
+    "@types/mz": "^0.0.31",
     "@types/node": "^7.0.12",
     "@types/source-map": "^0.5.0",
+    "aurelia-logging": "^1.3.1",
+    "ava": "^0.19.1",
+    "ava-fixture": "^0.10.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-flying-sheep": "^3.0.0",
@@ -24,11 +32,15 @@
     "eslint-plugin-no-foreach": "^1.0.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-typescript": "git+https://github.com/nzakas/eslint-plugin-typescript.git",
+    "mkdirp-promise": "^5.0.1",
+    "rimraf-promise": "^2.0.0",
+    "rollup": "^0.41.6",
     "typescript": "^2.2.2",
     "typescript-eslint-parser": "^2.1.0"
   },
   "dependencies": {
     "camelcase": "^4.1.0",
+    "mz": "^2.6.0",
     "postcss-modules": "^0.6.4",
     "rollup-plugin-postcss": "^0.4.1"
   }

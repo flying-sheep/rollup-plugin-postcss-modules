@@ -1,9 +1,14 @@
-import * as fs from 'fs'
+import * as fs from 'mz/fs'
 import * as path from 'path'
 
 import * as camelcase from 'camelcase'
 import * as postcss from 'rollup-plugin-postcss'
 import * as postcssModules from 'postcss-modules'
+
+// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
+import { Plugin } from 'rollup'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Transformer } from 'postcss'
 
 export const formatCSSDefinition = (name: string, classNames: string[]) => `\
 declare namespace ${name} {
@@ -15,9 +20,7 @@ export function writeCSSDefinition(cssPath: string, classNames: string[]): Promi
 	const name = camelcase(path.basename(cssPath, '.css'))
 	const definition = formatCSSDefinition(name, classNames)
 	const dPath = `${cssPath}.d.ts`
-	return new Promise((resolve, reject) => {
-		fs.writeFile(dPath, `${definition}\n`, e => (e ? reject(e) : resolve(dPath)))
-	})
+	return fs.writeFile(dPath, `${definition}\n`).then(() => dPath)
 }
 
 export class CSSExports {
@@ -49,31 +52,33 @@ export class CSSExports {
 }
 
 export interface Options extends postcss.Options {
+	/**  */
 	writeDefinitions?: boolean | ((dPath: string) => void)
-	postcssModulesOptions?: postcssModules.Options
+	/** Options for postcss-modules */
+	modules?: postcssModules.Options
 }
 
-export default function eslintPluginPostCSSModules(options: Options) {
+export default function eslintPluginPostCSSModules(options: Options = {}): Promise<Plugin> {
 	const {
 		plugins = [],
 		// own options
 		writeDefinitions = false,
-		postcssModulesOptions = {},
+		modules = {},
 		...rest,
 	} = options
 	if (rest.getExport) {
 		throw new Error("rollup-plugin-postcss-modules' provides getExport, you cannot specify your own.")
 	}
-	if (plugins.some(p => p.postcssPlugin === 'postcss-modules')) {
+	if (plugins.some(p => (p as Transformer).postcssPlugin === 'postcss-modules')) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use `postcssModulesOptions` for configuration.")
 	}
-	if (postcssModulesOptions.getJSON) {
-		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and provides its `getJSON()`. You cannot specify `postcssModulesOptions.getJSON`.")
+	if (modules.getJSON) {
+		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`.")
 	}
 
 	const { getExport, getJSON } = new CSSExports(writeDefinitions)
 
-	const postcssModulesPlugin = postcssModules({ getJSON, ...postcssModulesOptions })
+	const postcssModulesPlugin = postcssModules({ getJSON, ...modules })
 
 	return postcss({
 		plugins: [postcssModulesPlugin, ...plugins],
