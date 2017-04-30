@@ -33,7 +33,7 @@
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-typescript": "git+https://github.com/nzakas/eslint-plugin-typescript.git",
     "mkdirp-promise": "^5.0.1",
-    "rimraf-promise": "^2.0.0",
+    "rmfr": "^1.0.2",
     "rollup": "^0.41.6",
     "typescript": "^2.2.2",
     "typescript-eslint-parser": "^2.1.0"

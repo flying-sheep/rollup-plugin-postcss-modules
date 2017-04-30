@@ -1,6 +1,6 @@
 import fs from 'mz/fs'
 import mkdirp from 'mkdirp-promise'
-import rimraf from 'rimraf-promise'
+import rmfr from 'rmfr'
 
 import ava from 'ava'
 import fixture from 'ava-fixture'
@@ -11,7 +11,7 @@ import postcss from '..'
 const ftest = fixture(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
 
 ftest.each(async (t, { casePath, resultPath, match }) => {
-	await rimraf(resultPath)
+	await rmfr(resultPath)
 	await mkdirp(resultPath)
 
 	const opts = require(`${casePath}/options`)
