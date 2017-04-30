@@ -1,3 +1,7 @@
+[![Build Status]](https://travis-ci.org/flying-sheep/rollup-plugin-postcss-modules)
+
+[Build Status]: https://travis-ci.org/flying-sheep/rollup-plugin-postcss-modules.svg?branch=master
+
 rollup-plugin-postcss-modules
 =============================
 
