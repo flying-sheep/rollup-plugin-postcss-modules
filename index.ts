@@ -55,9 +55,9 @@ class CSSExports {
 }
 
 export interface Options extends postcss.Options {
-	/**  */
+	/** Write typescript definitions next to source files? Default: false */
 	writeDefinitions?: boolean | DefinitionCB
-	/** Options for postcss-modules */
+	/** Options for postcss-modules. */
 	modules?: postcssModules.Options
 }
 
