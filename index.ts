@@ -12,7 +12,7 @@ import { Transformer } from 'postcss'
 
 const formatCSSDefinition = (name: string, classNames: string[]) => `\
 declare namespace ${name} {
-	${classNames.map(t => `const ${camelcase(t)}: string`).join('\n\t')}
+	${classNames.map(t => `const ${t}: string`).join('\n\t')}
 }
 export default ${name}`
 
@@ -44,11 +44,15 @@ class CSSExports {
 	}
 	
 	getJSON = async (id: string, exportTokens: postcssModules.ExportTokens) => {
+		const ccTokens: postcssModules.ExportTokens = {}
+		for (const className of Object.keys(exportTokens)) {
+			ccTokens[camelcase(className)] = exportTokens[className]
+		}
 		if (this.writeDefinitions) {
-			const dPath = await writeCSSDefinition(id, Object.keys(exportTokens))
+			const dPath = await writeCSSDefinition(id, Object.keys(ccTokens))
 			await this.definitionCB(dPath)
 		}
-		this.exports[id] = exportTokens
+		this.exports[id] = ccTokens
 	}
 	
 	getExport = (id: string) => this.exports[id]
