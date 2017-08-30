@@ -19,20 +19,22 @@ ftest.each(async (t, { casePath, resultPath, match }) => { try {
 	
 	const plugin = await postcss(options)
 	// prevent adding intro code but still execute for side effects
-	const old_intro = plugin.intro
+	const { intro } = plugin
 	plugin.intro = () => {
-		old_intro()
+		intro()
 		return null
 	}
 	
 	const bundle = await rollup({
-		entry: `${casePath}/in.css`,
-		dest: `${resultPath}/out.js`,
+		input: `${casePath}/in.css`,
+		output: {
+			file: `${resultPath}/out.js`,
+		},
 		plugins: [plugin],
 	})
 	
 	await bundle.write({
-		dest: `${resultPath}/out.js`,
+		file: `${resultPath}/out.js`,
 		format: 'es',
 	})
 	

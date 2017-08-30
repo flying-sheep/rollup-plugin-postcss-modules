@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-postcss-modules",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "rollup-plugin-postcss wrapper with built-in CSS module and TypeScript support",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -17,13 +17,13 @@
   },
   "devDependencies": {
     "@types/acorn": "^4.0.2",
-    "@types/camelcase": "^0.0.30",
+    "@types/camelcase": "^4.1.0",
     "@types/mz": "^0.0.31",
-    "@types/node": "^7.0.12",
+    "@types/node": "^8.0.26",
     "@types/source-map": "^0.5.0",
     "aurelia-logging": "^1.3.1",
-    "ava": "^0.19.1",
-    "ava-fixture": "^0.10.1",
+    "ava": "^0.22.0",
+    "ava-fixture": "^0.11.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-flying-sheep": "^3.0.0",
@@ -31,17 +31,17 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-no-foreach": "^1.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "eslint-plugin-typescript": "git+https://github.com/nzakas/eslint-plugin-typescript.git",
+    "eslint-plugin-typescript": "^0.7.0",
     "mkdirp-promise": "^5.0.1",
     "rmfr": "^1.0.2",
-    "rollup": "^0.41.6",
-    "typescript": "^2.2.2",
-    "typescript-eslint-parser": "^2.1.0"
+    "rollup": "^0.49.2",
+    "typescript": "^2.4.2",
+    "typescript-eslint-parser": "^7.0.0"
   },
   "dependencies": {
     "camelcase": "^4.1.0",
     "mz": "^2.6.0",
-    "postcss-modules": "^0.7.0",
-    "rollup-plugin-postcss": "^0.4.1"
+    "postcss-modules": "^0.8.0",
+    "rollup-plugin-postcss": "^0.5.4"
   }
 }

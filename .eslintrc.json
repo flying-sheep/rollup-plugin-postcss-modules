@@ -5,6 +5,7 @@
     "rules": {
         "no-console": 0,
         "no-undef": 0,                  // typescript will complain itself
+        "comma-dangle": [2, "only-multiline"],
         "typescript/no-unused-vars": 2  // mark vars as used
     }
 }
