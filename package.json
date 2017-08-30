@@ -26,7 +26,7 @@
     "ava-fixture": "^0.11.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
-    "eslint-config-flying-sheep": "^3.0.0",
+    "eslint-config-flying-sheep": "^3.0.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-no-foreach": "^1.0.0",
