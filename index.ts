@@ -78,8 +78,8 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 	if (modules.getJSON) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`.")
 	}
-	if (!('dest' in rest) && 'output' in rest && 'file' in (rest as any).output) {
-		(rest as any).dest = (rest as any).output.file  // postcss expects the old rollup interface
+	if (!('dest' in rest) && 'file' in rest) {
+		(rest as any).dest = (rest as any).file  // postcss expects the old rollup interface
 	}
 	
 	const { getExport, getJSON } = new CSSExports(writeDefinitions)
