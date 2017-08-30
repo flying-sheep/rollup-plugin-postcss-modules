@@ -19,6 +19,8 @@ Two new options exist:
 Example
 -------
 
+see [here](https://github.com/flying-sheep/rollup-plugin-postcss-modules-example) for a clonable repo.
+
 `rollup.config.js`:
 ```javascript
 import postcss from 'rollup-plugin-postcss-modules'
