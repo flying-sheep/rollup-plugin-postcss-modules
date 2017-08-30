@@ -29,7 +29,7 @@ export type DefinitionCB = (dPath: string) => void | PromiseLike<void>
 class CSSExports {
 	writeDefinitions: boolean | DefinitionCB
 	exports: { [moduleName: string]: postcssModules.ExportTokens }
-
+	
 	constructor(writeDefinitions: boolean | DefinitionCB) {
 		this.writeDefinitions = writeDefinitions
 		this.exports = {}
@@ -78,11 +78,14 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 	if (modules.getJSON) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`.")
 	}
-
+	if (!('dest' in rest) && 'output' in rest && 'file' in (rest as any).output) {
+		(rest as any).dest = (rest as any).output.file  // postcss expects the old rollup interface
+	}
+	
 	const { getExport, getJSON } = new CSSExports(writeDefinitions)
-
+	
 	const postcssModulesPlugin = postcssModules({ getJSON, ...modules })
-
+	
 	return postcss({
 		plugins: [postcssModulesPlugin, ...plugins],
 		getExport,
