@@ -14,7 +14,7 @@ Just add some regular PostCSS plugins and be on your way.
 Two new options exist:
 
 * `writeDefinitions: true` creates `.css.d.ts` files next to every processed `.css` file.
-* `postcssModulesOptions: { ... }` can be used to pass [options](https://github.com/css-modules/postcss-modules#usage) to the intrinsic `postcss-modules` plugin.
+* `modules: { ... }` can be used to pass [options](https://github.com/css-modules/postcss-modules#usage) to the intrinsic `postcss-modules` plugin.
 
 Example
 -------
@@ -37,7 +37,7 @@ export default {
 			extract: true,  // extracts to `${basename(dest)}.css`
 			plugins: [autoprefixer()],
 			writeDefinitions: true,
-			// postcssModulesOptions: { ... }
+			// modules: { ... }
 		}),
 		typescript(),
 	],

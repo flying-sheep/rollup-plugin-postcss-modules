@@ -1,3 +1,4 @@
-var _in = __$styleInject(".test { color: blue }",{"test":"test"});
+__$styleInject(".test { color: blue }", {});
+var _in = {"test":"test"};
 
 export default _in;
