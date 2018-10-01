@@ -21,7 +21,7 @@ ftest.each(async (t, { casePath, resultPath, match }) => { try {
 	// prevent adding intro code but still execute for side effects
 	const { intro } = plugin
 	plugin.intro = () => {
-		intro()
+		if (intro != null) intro()
 		return null
 	}
 	

@@ -71,7 +71,7 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 		// own options
 		writeDefinitions = false,
 		modules = {},
-		...rest,
+		...rest
 	} = options
 	if (rest.getExport) {
 		throw new Error("rollup-plugin-postcss-modules' provides getExport, you cannot specify your own.")
@@ -79,8 +79,8 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 	if (plugins.some(p => (p as Transformer).postcssPlugin === 'postcss-modules')) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use the `modules` config key for configuration.")
 	}
-	if (modules.getJSON) {
-		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`.")
+	if (modules === true || modules === false || modules.getJSON) {
+		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`")
 	}
 	
 	const { getExport, getJSON } = new CSSExports(writeDefinitions)

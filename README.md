@@ -5,9 +5,7 @@
 rollup-plugin-postcss-modules
 =============================
 
-Using `rollup-plugin-postcss` with [`postcss-modules`](https://github.com/css-modules/postcss-modules) is relatively easy, but requires hard to remember boilerplate and there’s only one way to combine them.
-
-Since the boilerplate clutters your `rollup.config.js`, this plugin wraps the above packages in the one way it makes sense.
+Using `rollup-plugin-postcss` with [`postcss-modules`](https://github.com/css-modules/postcss-modules) is easy, but there’s only one way to combine them. Also, until [this PR](https://github.com/egoist/rollup-plugin-postcss/pull/127) is merged, there’s no way to use `rollup-plugin-postcss>=1.0` with Typescript.
 
 Just add some regular PostCSS plugins and be on your way.
 
