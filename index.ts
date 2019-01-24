@@ -7,7 +7,7 @@ import * as postcssModules from 'postcss-modules'
 
 // eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import { Plugin } from 'rollup'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import { Transformer } from 'postcss'
 
 const formatCSSDefinition = (name: string, classNames: string[]) => `\
@@ -61,8 +61,6 @@ class CSSExports {
 export interface Options extends postcss.Options {
 	/** Write typescript definitions next to source files? Default: false */
 	writeDefinitions?: boolean | DefinitionCB
-	/** Options for postcss-modules. */
-	modules?: postcssModules.Options
 }
 
 export default function eslintPluginPostCSSModules(options: Options = {}): Promise<Plugin> {
@@ -79,16 +77,16 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 	if (plugins.some(p => (p as Transformer).postcssPlugin === 'postcss-modules')) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use the `modules` config key for configuration.")
 	}
-	if (modules === false || modules.getJSON) {
+	const modulesOptions = modules === true ? {} : modules
+	if (modulesOptions === false || modulesOptions.getJSON) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`")
 	}
 	
 	const { getExport, getJSON } = new CSSExports(writeDefinitions)
-	
-	const postcssModulesPlugin = postcssModules({ getJSON, ...modules })
-	
+		
 	return postcss({
-		plugins: [postcssModulesPlugin, ...plugins],
+		plugins: [...plugins],
+		modules: { getJSON, ...modulesOptions },
 		getExport,
 		...rest,
 	})

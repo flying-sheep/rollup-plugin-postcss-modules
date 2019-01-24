@@ -8,6 +8,9 @@ import fixture from 'ava-fixture'
 import { rollup } from 'rollup'
 import postcss from '..'
 
+const styleInjectPath = require
+	.resolve('style-inject/dist/style-inject.es')
+	.replace(/[\\/]+/g, '/')
 const ftest = fixture(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
 
 ftest.each(async (t, { casePath, resultPath, match }) => { try {
@@ -17,20 +20,14 @@ ftest.each(async (t, { casePath, resultPath, match }) => { try {
 	const opts = require(`${casePath}/options`)
 	const options = typeof opts === 'function' ? opts(resultPath) : opts
 	
-	const plugin = await postcss(options)
-	// prevent adding intro code but still execute for side effects
-	const { intro } = plugin
-	plugin.intro = () => {
-		if (intro != null) intro()
-		return null
-	}
-	
 	const bundle = await rollup({
 		input: `${casePath}/in.css`,
 		output: {
 			file: `${resultPath}/out.js`,
+			globals: { [styleInjectPath]: 'styleInject' },
 		},
-		plugins: [plugin],
+		external: [styleInjectPath],
+		plugins: [await postcss(options)],
 	})
 	
 	await bundle.write({

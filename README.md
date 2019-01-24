@@ -5,14 +5,14 @@
 rollup-plugin-postcss-modules
 =============================
 
-Using `rollup-plugin-postcss` with [`postcss-modules`](https://github.com/css-modules/postcss-modules) is easy, but there’s only one way to combine them. Also, until [this PR](https://github.com/egoist/rollup-plugin-postcss/pull/127) is merged, there’s no way to use `rollup-plugin-postcss>=1.0` with Typescript.
+Use the option `modules: { ... }` to pass [options](https://github.com/css-modules/postcss-modules#usage)
+to the [`postcss-modules`](https://github.com/css-modules/postcss-modules) plugin.
 
-Just add some regular PostCSS plugins and be on your way.
+With `rollup-plugin-postcss` 2.0, the only continued advantage this one has is TypeScript support.
 
-Two new options exist:
+One new option exists:
 
 * `writeDefinitions: true` creates `.css.d.ts` files next to every processed `.css` file.
-* `modules: { ... }` can be used to pass [options](https://github.com/css-modules/postcss-modules#usage) to the intrinsic `postcss-modules` plugin.
 
 Example
 -------
