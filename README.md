@@ -1,5 +1,7 @@
+[![NPM Version]](https://www.npmjs.com/package/rollup-plugin-postcss-modules)
 [![Build Status]](https://travis-ci.org/flying-sheep/rollup-plugin-postcss-modules)
 
+[NPM Version]: https://img.shields.io/npm/v/rollup-plugin-postcss-modules.svg?style=flat
 [Build Status]: https://travis-ci.org/flying-sheep/rollup-plugin-postcss-modules.svg?branch=master
 
 rollup-plugin-postcss-modules
