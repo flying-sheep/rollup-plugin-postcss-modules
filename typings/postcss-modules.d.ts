@@ -14,8 +14,11 @@ declare namespace postcssModules {
 			Promise<{ injectableSource: string, exportTokens: ExportTokens }>
 	}
 	interface Options {
-		/** By default, a JSON file with exported classes will be placed next to corresponding CSS. Use getJSON to do something else. */
-		getJSON?: (cssFileName: string, exportTokens: ExportTokens) => void
+		/**
+		 * By default, a JSON file with exported classes will be placed next to corresponding CSS.
+		 * Use getJSON to do something else.
+		 */
+		getJSON?: (cssFileName: string, exportTokens: ExportTokens) => void | Promise<void>
 		/** By default, the plugin assumes that all the classes are local */
 		scopeBehaviour?: 'local' | 'global'
 		/** Paths to global modules */
