@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 
 import { Plugin } from 'rollup'
-import { AcceptedPlugin, Parse, Syntax } from 'postcss'
+import { AcceptedPlugin, Parser } from 'postcss'
 import * as postcssModules from 'postcss-modules'
 
 declare namespace rollupPostcss {
@@ -32,7 +32,7 @@ declare namespace rollupPostcss {
 		/** Options for postcss-modules. */
 		modules?: boolean | postcssModules.Options
 		/** Custom CSS parser. */
-		parser?: Parse | Syntax
+		parser?: Parser
 		/** CSS preprocessor for alternative syntaxes like Stylus and Sass. */
 		preprocessor?: (content: string, id: string) => Promise<{code: string, map: any}>
 	}
