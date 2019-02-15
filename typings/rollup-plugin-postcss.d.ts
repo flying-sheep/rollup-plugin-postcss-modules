@@ -27,6 +27,8 @@ declare namespace rollupPostcss {
 		 * a mapping from class name to scoped name.
 		 */
 		getExport?: (id: string) => { [className: string]: string }
+		/** Use named exports alongside default export. */
+		namedExports?: boolean | ((id: string) => string)
 		/** Options for postcss-modules. */
 		modules?: boolean | postcssModules.Options
 		/** Custom CSS parser. */

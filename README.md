@@ -14,6 +14,21 @@ One new option exists:
 
 * `writeDefinitions: true` creates `.css.d.ts` files next to every processed `.css` file.
 
+Also the default `namedExports` option is slightly different:
+
+* `.class-name { ... } .switch { ... }` gets converted to something like
+
+    ```typescript
+	export const className = 'class-name'
+	export const $switch$ = 'switch'
+	export default {
+		'class-name': 'class-name',
+		className: 'class-name',
+		'switch': 'switch',
+		$switch$: 'switch',
+	}
+	```
+
 Example
 -------
 

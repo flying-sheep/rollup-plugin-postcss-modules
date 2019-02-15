@@ -1,4 +1,6 @@
-declare namespace in {
-	const test: string
+export const test: string
+interface Namespace {
+	"test": string,
 }
-export default in
+const $in$: Namespace
+export default $in$
