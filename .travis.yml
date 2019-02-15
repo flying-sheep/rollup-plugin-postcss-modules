@@ -3,7 +3,7 @@ dist: trusty
 sudo: false
 cache: npm
 install:
-  - npm
+  - npm install
   - npm build
 node_js:
   - 6
