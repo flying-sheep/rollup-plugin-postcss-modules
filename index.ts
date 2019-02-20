@@ -21,7 +21,7 @@ ${classNames.filter(n => !/-/.test(n)).map(t => `export const ${t}: string`).joi
 interface Namespace {
 	${classNames.map(t => `${JSON.stringify(t)}: string,`).join('\n\t')}
 }
-const ${name}: Namespace
+declare const ${name}: Namespace
 export default ${name}`
 
 async function writeCSSDefinition(cssPath: string, classNames: string[]): Promise<string> {
