@@ -3,5 +3,5 @@ interface Namespace {
 	"testCls": string,
 	"test-cls": string,
 }
-const $in$: Namespace
+declare const $in$: Namespace
 export default $in$
