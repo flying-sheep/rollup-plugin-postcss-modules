@@ -6,7 +6,6 @@ import ava from 'ava'
 import fixture from 'ava-fixture'
 
 import ts from 'typescript'
-import format from 'ts-diagnostic-formatter'
 
 import { rollup } from 'rollup'
 import externalGlobals from 'rollup-plugin-external-globals'
@@ -23,15 +22,14 @@ ftest.each(async (t, { casePath, baselinePath, resultPath, match }) => { try {
 	
 	const definition = `${baselinePath}/in.css.d.ts`
 	if (await fs.exists(definition)) {
-		const parsed = ts.createSourceFile(
-			definition,
-			(await fs.readFile(definition)).toString(),
-			ts.ScriptTarget.ES2015,
-		)
-		if (parsed.parseDiagnostics.length !== 0) {
-			const prog = ts.createProgram([definition], {})
-			const err = format(prog.getSyntacticDiagnostics(parsed), 'codeframe')[0]
-			t.fail(`Syntax error in ${err.file}\n${err.message}`)
+		const prog = ts.createProgram([definition], {})
+		const diagnostics = ts.getPreEmitDiagnostics(prog)
+		if (diagnostics.length !== 0) {
+			t.fail(ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+				getCanonicalFileName: path => path,
+				getCurrentDirectory: ts.sys.getCurrentDirectory,
+				getNewLine: () => ts.sys.newLine
+			}))
 		}
 	}
 	

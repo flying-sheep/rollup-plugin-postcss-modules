@@ -45,7 +45,6 @@
     "mz": "^2.7.0",
     "postcss-modules": "^1.4.1",
     "reserved-words": "^0.1.2",
-    "rollup-plugin-postcss": "^2.0.3",
-    "ts-diagnostic-formatter": "^0.1.1"
+    "rollup-plugin-postcss": "^2.0.3"
   }
 }
