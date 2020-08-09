@@ -1,4 +1,5 @@
-import fs from 'mz/fs'
+import { createRequire } from 'module'
+import { promises as fs, constants } from 'fs'
 import mkdirp from 'mkdirp-promise'
 import rmfr from 'rmfr'
 
@@ -9,19 +10,22 @@ import ts from 'typescript'
 
 import { rollup } from 'rollup'
 import externalGlobals from 'rollup-plugin-external-globals'
-import postcss from '..'
+import postcss from '../index.js'
 
+const require = createRequire(import.meta.url)
 const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')
-const ftest = fixture(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
+const ftest = fixture.default(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
 
-ftest.each(async (t, { casePath, baselinePath, resultPath, match }) => { try {
+ftest.each(async (t, {
+	casePath, baselinePath, resultPath, match
+}) => {
 	await rmfr(resultPath)
 	await mkdirp(resultPath)
 	
 	const definition = `${baselinePath}/in.css.d.ts`
-	if (await fs.exists(definition)) {
+	if (await fs.stat(definition).catch(() => false)) {
 		const prog = ts.createProgram([definition], {})
 		const diagnostics = ts.getPreEmitDiagnostics(prog)
 		if (diagnostics.length !== 0) {
@@ -33,14 +37,14 @@ ftest.each(async (t, { casePath, baselinePath, resultPath, match }) => { try {
 		}
 	}
 	
-	const opts = require(`${casePath}/options`)
+	const opts = await import(`${casePath}/options.js`)
 	const options = typeof opts === 'function' ? opts(resultPath) : opts
 	
 	const bundle = await rollup({
 		input: `${casePath}/in.css`,
 		output: { file: `${resultPath}/out.js` },
 		plugins: [
-			await postcss(options),
+			postcss(options),
 			externalGlobals({ [styleInjectPath]: 'styleInject' }),
 		],
 	})
@@ -51,12 +55,9 @@ ftest.each(async (t, { casePath, baselinePath, resultPath, match }) => { try {
 	})
 	
 	const dPath = `${casePath}/in.css.d.ts`
-	if (await fs.exists(dPath)) {
+	if (await fs.stat(dPath).catch(() => false)) {
 		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
 	}
 	
 	return match()
-} catch (e) {
-	console.error(e.stack)
-	throw e
-}})
+})

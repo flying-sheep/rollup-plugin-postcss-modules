@@ -1,19 +1,19 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 
-import { Plugin } from 'postcss'
-
-declare namespace postcssModules {
-	interface ExportTokens {
+declare module 'postcss-modules' {
+	import { Plugin } from 'postcss'
+	
+	export interface ExportTokens {
 		[className: string]: string
 	}
-	interface PathFetcher {
+	export interface PathFetcher {
 		(file: string, relativeTo: string, depTrace: string): Promise<ExportTokens>
 	}
-	interface Loader {
+	export interface Loader {
 		load: (source: string, sourcePath: string, pathFetcher: PathFetcher) =>
 			Promise<{ injectableSource: string, exportTokens: ExportTokens }>
 	}
-	interface Options {
+	export interface Options {
 		/**
 		 * By default, a JSON file with exported classes will be placed next to corresponding CSS.
 		 * Use getJSON to do something else.
@@ -28,8 +28,7 @@ declare namespace postcssModules {
 		/** Custom loader */
 		Loader?: Loader
 	}
+	
+	const postcssModules: Plugin<Options>
+	export default postcssModules
 }
-
-declare const postcssModules: Plugin<postcssModules.Options>
-
-export = postcssModules

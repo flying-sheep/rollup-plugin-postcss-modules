@@ -1,8 +1,8 @@
-import * as fs from 'mz/fs'
+import { promises as fs } from 'fs'
 import * as path from 'path'
 
 import * as camelcase from 'camelcase'
-import * as postcss from 'rollup-plugin-postcss'
+import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
 import * as postcssModules from 'postcss-modules'
 import * as reserved from 'reserved-words'
 
@@ -63,12 +63,12 @@ class CSSExports {
 	}
 }
 
-export interface Options extends postcss.Options {
+export interface Options extends PostCSSPluginConf {
 	/** Write typescript definitions next to source files? Default: false */
 	writeDefinitions?: boolean | DefinitionCB
 }
 
-export default function eslintPluginPostCSSModules(options: Options = {}): Promise<Plugin> {
+export default function eslintPluginPostCSSModules(options: Options = {}): Plugin {
 	const {
 		plugins = [],
 		// own options
@@ -77,7 +77,7 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 		namedExports = fixname,
 		...rest
 	} = options
-	if (rest.getExport) {
+	if ('getExport' in rest) {
 		throw new Error("'getExport' is no longer supported.")
 	}
 	if (plugins.some(p => (p as Transformer).postcssPlugin === 'postcss-modules')) {
@@ -93,7 +93,7 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Promi
 	return postcss({
 		plugins: [...plugins],
 		modules: { getJSON, ...modulesOptions },
-		namedExports,
+		namedExports: namedExports as any,
 		...rest,
 	})
 }
