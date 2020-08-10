@@ -1,5 +1,5 @@
 import { createRequire } from 'module'
-import { promises as fs, constants } from 'fs'
+import { promises as fs } from 'fs'
 import mkdirp from 'mkdirp-promise'
 import rmfr from 'rmfr'
 
@@ -30,7 +30,7 @@ ftest.each(async (t, {
 		const diagnostics = ts.getPreEmitDiagnostics(prog)
 		if (diagnostics.length !== 0) {
 			t.fail(ts.formatDiagnosticsWithColorAndContext(diagnostics, {
-				getCanonicalFileName: path => path,
+				getCanonicalFileName: (path) => path,
 				getCurrentDirectory: ts.sys.getCurrentDirectory,
 				getNewLine: () => ts.sys.newLine
 			}))
