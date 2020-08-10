@@ -1,3 +1,3 @@
-export default resultPath => ({
+export default (resultPath) => ({
 	extract: `${resultPath}/custom.css`,
 })
