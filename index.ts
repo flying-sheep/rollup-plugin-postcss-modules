@@ -86,10 +86,11 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Plugi
 	}
 	
 	const { getJSON } = new CSSExports(writeDefinitions)
-		
+
 	return postcss({
 		plugins: [...plugins],
 		modules: { getJSON, ...modulesOptions },
+		autoModules: false,
 		namedExports,
 		...rest,
 	})
