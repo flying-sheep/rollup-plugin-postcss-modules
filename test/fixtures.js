@@ -1,4 +1,3 @@
-import { createRequire } from 'module'
 import { promises as fs } from 'fs'
 import mkdirp from 'mkdirp-promise'
 import rmfr from 'rmfr'
@@ -12,11 +11,10 @@ import { rollup } from 'rollup'
 import externalGlobals from 'rollup-plugin-external-globals'
 import postcss from '../index.js'
 
-const require = createRequire(import.meta.url)
 const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')
-const ftest = fixture.default(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
+const ftest = fixture(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
 
 ftest.each(async (t, {
 	casePath, baselinePath, resultPath, match
