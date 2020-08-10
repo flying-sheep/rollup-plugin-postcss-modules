@@ -37,7 +37,7 @@ ftest.each(async (t, {
 		}
 	}
 	
-	const opts = await import(`${casePath}/options.js`)
+	const opts = (await import(`${casePath}/options.js`)).default
 	const options = typeof opts === 'function' ? opts(resultPath) : opts
 	
 	const bundle = await rollup({
