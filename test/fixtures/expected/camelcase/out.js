@@ -1,8 +1,9 @@
 var testCls = "test-cls";
-var css = ".test-cls { color: blue }";
+var css_248z = ".test-cls { color: blue }";
 var _in = {"test-cls":"test-cls","testCls":"test-cls"};
+var stylesheet=".test-cls { color: blue }";
 
-styleInject(css);
+styleInject(css_248z);
 
 export default _in;
-export { testCls };
+export { stylesheet, testCls };

@@ -1,8 +1,9 @@
 var test = "test";
-var css = ".test { color: blue }";
+var css_248z = ".test { color: blue }";
 var _in = {"test":"test"};
+var stylesheet=".test { color: blue }";
 
-styleInject(css);
+styleInject(css_248z);
 
 export default _in;
-export { test };
+export { stylesheet, test };

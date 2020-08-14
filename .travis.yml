@@ -6,6 +6,5 @@ install:
   - npm install
   - npm run build
 node_js:
-  - 8
-  - 11
+  - lts/*
   - node

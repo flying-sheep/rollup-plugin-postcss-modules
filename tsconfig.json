@@ -13,6 +13,8 @@
 		"removeComments": true,
 		"sourceMap": true,
 		"declaration": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
 		//custom typings
 		"baseUrl": ".",
 		"paths" : { "*": ["typings/*", "*"] },
