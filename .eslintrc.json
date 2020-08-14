@@ -1,12 +1,16 @@
 {
-    "extends": "flying-sheep",
-    "parser": "typescript-eslint-parser",
-    "plugins": ["typescript"],
+    "extends": ["flying-sheep", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
     "rules": {
         "no-console": 0,
-        "no-undef": 0,                  // typescript will complain itself
-        "comma-dangle": [2, "only-multiline"],
-        "no-unused-vars": 0,
-        "typescript/no-unused-vars": 2  // mark vars as used
+        "comma-dangle": [2, "only-multiline"]
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            }
+        }
     }
 }

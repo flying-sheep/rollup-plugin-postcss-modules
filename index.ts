@@ -1,15 +1,12 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
 
-import * as camelcase from 'camelcase'
+import camelcase from 'camelcase'
 import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
 import * as postcssModules from 'postcss-modules'
-import * as reserved from 'reserved-words'
-
-// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
-import { Plugin } from 'rollup'
-// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
-import { Transformer } from 'postcss'
+import reserved from 'reserved-words'
+import type { Plugin } from 'rollup'
+import type { Transformer } from 'postcss'
 
 function fixname(name: string) {
 	const ccName = camelcase(name)
@@ -17,9 +14,9 @@ function fixname(name: string) {
 }
 
 const formatCSSDefinition = (name: string, classNames: string[]) => `\
-${classNames.filter(n => !/-/.test(n)).map(t => `export const ${t}: string`).join('\n')}
+${classNames.filter((n) => !/-/.test(n)).map((t) => `export const ${t}: string`).join('\n')}
 interface Namespace {
-	${classNames.map(t => `${JSON.stringify(t)}: string,`).join('\n\t')}
+	${classNames.map((t) => `${JSON.stringify(t)}: string,`).join('\n\t')}
 }
 declare const ${name}: Namespace
 export default ${name}`
@@ -80,7 +77,7 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Plugi
 	if ('getExport' in rest) {
 		throw new Error("'getExport' is no longer supported.")
 	}
-	if (plugins.some(p => (p as Transformer).postcssPlugin === 'postcss-modules')) {
+	if (plugins.some((p) => (p as Transformer).postcssPlugin === 'postcss-modules')) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use the `modules` config key for configuration.")
 	}
 	const modulesOptions = modules === true ? {} : modules
@@ -89,11 +86,12 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Plugi
 	}
 	
 	const { getJSON } = new CSSExports(writeDefinitions)
-		
+
 	return postcss({
 		plugins: [...plugins],
 		modules: { getJSON, ...modulesOptions },
-		namedExports: namedExports as any,
+		autoModules: false,
+		namedExports,
 		...rest,
 	})
 }
