@@ -1,20 +1,23 @@
 import { promises as fs } from 'fs'
-import mkdirp from 'mkdirp-promise'
+import mkdirp from 'mkdirp'
 import rmfr from 'rmfr'
 
 import ava from 'ava'
-import fixture from 'ava-fixture'
+import fixtures from 'ava-fixture'
 
 import ts from 'typescript'
 
 import { rollup } from 'rollup'
+import { createRequire } from 'module'
 import externalGlobals from 'rollup-plugin-external-globals'
 import postcss from '../index.js'
 
+const require = createRequire(import.meta.url);
 const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')
-const ftest = fixture(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
+
+const ftest = fixtures.default(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
 
 ftest.each(async (t, {
 	casePath, baselinePath, resultPath, match

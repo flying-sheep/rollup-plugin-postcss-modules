@@ -3,7 +3,7 @@ import * as path from 'path'
 
 import camelcase from 'camelcase'
 import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
-import * as postcssModules from 'postcss-modules'
+import * as postCSSModules from 'postcss-modules'
 import reserved from 'reserved-words'
 import type { Plugin } from 'rollup'
 import type { Transformer } from 'postcss'
@@ -31,9 +31,12 @@ async function writeCSSDefinition(cssPath: string, classNames: string[]): Promis
 
 export type DefinitionCB = (dPath: string) => void | PromiseLike<void>
 
+type PostCssOptions = Parameters<postCSSModules>[0]
+type PostCssModulesTokens = Parameters<NonNullable<PostCssOptions['getJSON']>>[1]
+
 class CSSExports {
 	writeDefinitions: boolean | DefinitionCB
-	exports: { [moduleName: string]: postcssModules.ExportTokens }
+	exports: { [moduleName: string]: PostCssModulesTokens }
 	
 	constructor(writeDefinitions: boolean | DefinitionCB) {
 		this.writeDefinitions = writeDefinitions
@@ -47,8 +50,8 @@ class CSSExports {
 		}
 	}
 	
-	getJSON = async (id: string, exportTokens: postcssModules.ExportTokens) => {
-		const ccTokens: postcssModules.ExportTokens = {}
+	getJSON = async (id: string, exportTokens: PostCssModulesTokens) => {
+		const ccTokens: PostCssModulesTokens = {}
 		for (const className of Object.keys(exportTokens)) {
 			ccTokens[fixname(className)] = exportTokens[className]
 			ccTokens[className] = exportTokens[className]
