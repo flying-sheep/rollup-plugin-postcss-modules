@@ -24,7 +24,7 @@ ftest.each(async (t, {
 }) => {
 	await rmfr(resultPath)
 	await mkdirp(resultPath)
-	
+
 	const definition = `${baselinePath}/in.css.d.ts`
 	if (await fs.stat(definition).catch(() => false)) {
 		const prog = ts.createProgram([definition], {})
@@ -37,10 +37,10 @@ ftest.each(async (t, {
 			}))
 		}
 	}
-	
+
 	const opts = (await import(`${casePath}/options.js`)).default
 	const options = typeof opts === 'function' ? opts(resultPath) : opts
-	
+
 	const bundle = await rollup({
 		input: `${casePath}/in.css`,
 		output: { file: `${resultPath}/out.js` },
@@ -49,16 +49,16 @@ ftest.each(async (t, {
 			externalGlobals({ [styleInjectPath]: 'styleInject' }),
 		],
 	})
-	
+
 	await bundle.write({
 		file: `${resultPath}/out.js`,
 		format: 'es',
 	})
-	
+
 	const dPath = `${casePath}/in.css.d.ts`
 	if (await fs.stat(dPath).catch(() => false)) {
 		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
 	}
-	
+
 	return match()
 })

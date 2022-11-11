@@ -37,11 +37,11 @@ type PostcssModulesTokens = Parameters<NonNullable<PostcssOptions['getJSON']>>[1
 class CSSExports {
 	writeDefinitions: boolean | DefinitionCB
 	exports: { [moduleName: string]: PostcssModulesTokens }
-	
+
 	constructor(writeDefinitions: boolean | DefinitionCB) {
 		this.writeDefinitions = writeDefinitions
 	}
-	
+
 	definitionCB = async (dPath: string) => {
 		if (typeof this.writeDefinitions === 'function') {
 			await Promise.resolve(this.writeDefinitions(dPath))
@@ -49,7 +49,7 @@ class CSSExports {
 			console.log(`${dPath} written`)
 		}
 	}
-	
+
 	getJSON = async (id: string, exportTokens: PostcssModulesTokens) => {
 		const ccTokens: PostcssModulesTokens = {}
 		for (const className of Object.keys(exportTokens)) {
@@ -87,7 +87,7 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Plugi
 	if (modulesOptions === false || modulesOptions.getJSON) {
 		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`")
 	}
-	
+
 	const { getJSON } = new CSSExports(writeDefinitions)
 
 	return postcss({
