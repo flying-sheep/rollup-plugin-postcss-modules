@@ -1,9 +1,8 @@
 var global = "global";
-var css_248z = ".global { color: blue } .local { color: red }";
+var css_248z = ".global { color: blue } .local { color: red }\n";
 var _in = {"global":"global","local":"local"};
-var stylesheet = ".global { color: blue } .local { color: red }";
+var stylesheet = ".global { color: blue } .local { color: red }\n";
 
 styleInject(css_248z);
 
-export default _in;
-export { global, local, stylesheet };
+export { _in as default, global, local, stylesheet };
