@@ -49,6 +49,7 @@
     "rollup-plugin-postcss": "^4.0.2"
   },
   "ava": {
+    "workerThreads": false,
     "require": [
       "esm"
     ]
