@@ -5,5 +5,4 @@ var stylesheet=".test { color: blue }";
 
 styleInject(css_248z);
 
-export default _in;
-export { stylesheet, test };
+export { _in as default, stylesheet, test };
