@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-postcss-modules",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "rollup-plugin-postcss wrapper with built-in CSS module and TypeScript support",
   "type": "module",
   "main": "index.js",
