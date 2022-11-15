@@ -1,8 +1,8 @@
 [![NPM Version]](https://www.npmjs.com/package/rollup-plugin-postcss-modules)
-[![Build Status]](https://travis-ci.com/flying-sheep/rollup-plugin-postcss-modules)
+[![Build Status]](https://github.com/flying-sheep/rollup-plugin-postcss-modules/actions/workflows/ci.yml)
 
 [NPM Version]: https://img.shields.io/npm/v/rollup-plugin-postcss-modules.svg?style=flat
-[Build Status]: https://travis-ci.com/flying-sheep/rollup-plugin-postcss-modules.svg?branch=master
+[Build Status]: https://github.com/flying-sheep/rollup-plugin-postcss-modules/actions/workflows/ci.yml/badge.svg
 
 rollup-plugin-postcss-modules
 =============================
