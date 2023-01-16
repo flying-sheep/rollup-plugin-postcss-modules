@@ -24,7 +24,7 @@
     "aurelia-logging": "^1.5.2",
     "ava": "^5.0.1",
     "ava-fixture": "^0.11.0",
-    "eslint": "^7.6.0",
+    "eslint": "^8.32.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-flying-sheep": "^5.2.0",
     "eslint-import-resolver-typescript": "^3.5.2",
