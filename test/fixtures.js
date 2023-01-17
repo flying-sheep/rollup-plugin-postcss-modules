@@ -1,7 +1,9 @@
 import { promises as fs } from 'fs'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
 import mkdirp from 'mkdirp'
 import rmfr from 'rmfr'
-
 import ava from 'ava'
 import { baseline } from '@unional/fixture'
 import ts from 'typescript'
@@ -16,7 +18,9 @@ const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')
 
-baseline('test/fixtures', ({
+const here = dirname(fileURLToPath(import.meta.url))
+
+baseline(`${here}/fixtures`, ({
 	caseName, casePath, baselinePath, resultPath, match
 }) => ava(caseName, async (t) => {
 	await rmfr(resultPath)
@@ -60,5 +64,6 @@ baseline('test/fixtures', ({
 		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
 	}
 
-	return match()
+	await match()
+	t.pass()
 }))
