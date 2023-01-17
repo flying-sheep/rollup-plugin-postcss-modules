@@ -3,6 +3,7 @@
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "rules": {
+        "import/extensions": 0,
         "no-console": 0,
         "comma-dangle": [2, "only-multiline"]
     },
@@ -12,5 +13,11 @@
                 "alwaysTryTypes": true
             }
         }
-    }
+    },
+    "ignorePatterns": [
+        "index.js",
+        "index.d.ts",
+        "test/fixtures/expected/**/*",
+        "test/fixtures/results/**/*"
+    ]
 }
