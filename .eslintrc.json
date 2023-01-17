@@ -17,7 +17,7 @@
     "ignorePatterns": [
         "index.js",
         "index.d.ts",
-        "test/fixtures/expected/**/*",
+        "test/fixtures/baselines/**/*",
         "test/fixtures/results/**/*"
     ]
 }

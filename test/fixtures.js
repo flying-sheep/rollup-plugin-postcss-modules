@@ -3,13 +3,12 @@ import mkdirp from 'mkdirp'
 import rmfr from 'rmfr'
 
 import ava from 'ava'
-import fixtures from 'ava-fixture'
-
+import { baseline } from '@unional/fixture'
 import ts from 'typescript'
-
 import { rollup } from 'rollup'
 import { createRequire } from 'module'
 import alias from '@rollup/plugin-alias'
+
 import postcss from '../index.js'
 
 const require = createRequire(import.meta.url)
@@ -17,11 +16,9 @@ const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')
 
-const ftest = fixtures.default(ava, 'test/fixtures/cases', 'test/fixtures/expected', 'test/fixtures/results')
-
-ftest.each(async (t, {
-	casePath, baselinePath, resultPath, match
-}) => {
+baseline('test/fixtures', ({
+	caseName, casePath, baselinePath, resultPath, match
+}) => ava(caseName, async (t) => {
 	await rmfr(resultPath)
 	await mkdirp(resultPath)
 
@@ -38,7 +35,7 @@ ftest.each(async (t, {
 		}
 	}
 
-	const opts = (await import(`${casePath}/options.js`)).default
+	const { default: opts } = await import(`${casePath}/options.js`)
 	const options = typeof opts === 'function' ? opts(resultPath) : opts
 
 	const bundle = await rollup({
@@ -64,4 +61,4 @@ ftest.each(async (t, {
 	}
 
 	return match()
-})
+}))
