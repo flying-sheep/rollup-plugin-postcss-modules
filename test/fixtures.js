@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 import mkdirp from 'mkdirp'
 import rmfr from 'rmfr'
 import ava from 'ava'
-import { baseline } from '@unional/fixture'
+import { baseline, Mismatch } from '@unional/fixture'
 import ts from 'typescript'
 import { rollup } from 'rollup'
 import { createRequire } from 'module'
@@ -64,6 +64,11 @@ baseline(`${here}/fixtures`, ({
 		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
 	}
 
-	await match()
+	try {
+		await match()
+	} catch (e) {
+		if (e instanceof Mismatch) t.fail(e.message)
+		else throw e
+	}
 	t.pass()
 }))
