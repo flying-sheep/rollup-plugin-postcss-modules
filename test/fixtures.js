@@ -9,7 +9,7 @@ import ts from 'typescript'
 
 import { rollup } from 'rollup'
 import { createRequire } from 'module'
-import externalGlobals from 'rollup-plugin-external-globals'
+import alias from '@rollup/plugin-alias'
 import postcss from '../index.js'
 
 const require = createRequire(import.meta.url);
@@ -44,9 +44,12 @@ ftest.each(async (t, {
 	const bundle = await rollup({
 		input: `${casePath}/in.css`,
 		output: { file: `${resultPath}/out.js` },
+		external: ['style-inject'],
 		plugins: [
 			postcss(options),
-			externalGlobals({ [styleInjectPath]: 'styleInject' }),
+			alias({
+				entries: { [styleInjectPath]: 'style-inject' },
+			}),
 		],
 	})
 
