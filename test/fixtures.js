@@ -12,7 +12,7 @@ import { createRequire } from 'module'
 import alias from '@rollup/plugin-alias'
 import postcss from '../index.js'
 
-const require = createRequire(import.meta.url);
+const require = createRequire(import.meta.url)
 const styleInjectPath = require
 	.resolve('style-inject/dist/style-inject.es')
 	.replace(/[\\/]+/g, '/')

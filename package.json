@@ -13,7 +13,7 @@
     "start": "tsc --watch",
     "test": "npm run eslint && npm run ava",
     "prepublishOnly": "npm run build && npm run test",
-    "eslint": "eslint index.ts",
+    "eslint": "eslint '**/*.ts' '**/*.js'",
     "ava": "ava"
   },
   "devDependencies": {
