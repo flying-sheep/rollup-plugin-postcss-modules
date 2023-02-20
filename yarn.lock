@@ -325,8 +325,8 @@ __metadata:
   linkType: hard
 
 "@unional/fixture@npm:^3.2.11":
-  version: 3.2.12
-  resolution: "@unional/fixture@npm:3.2.12"
+  version: 3.2.13
+  resolution: "@unional/fixture@npm:3.2.13"
   dependencies:
     "@types/diff-match-patch": ^1.0.32
     chalk: ^5.2.0
@@ -338,7 +338,7 @@ __metadata:
     glob: ^8.0.3
     iso-error: ^6.0.0
     js-yaml: ^4.1.0
-    minimatch: ^6.0.0
+    minimatch: ^7.0.0
     mkdirp: ^2.0.0
     pad-left: ^2.1.0
     rimraf: ^3.0.2
@@ -346,7 +346,7 @@ __metadata:
     standard-log-color: ^11.5.0
     tersify: ^3.11.1
     type-plus: ^5.0.0
-  checksum: b5e2e00603467af788da77d31dcaa6f7565efbf86dd5b8d2c79e1976b822b4a19fc95d9dca071c11f0cd98e0f3222593f49f72b038cc02a4916de4771e4c1f35
+  checksum: bbea0af47b508074ec9009b9243f898a4024d07329c859312de2f097043d806cef49156bc323425a7cbc445e5b4901564122c785beb6352fef32a89a594bbb4f
   languageName: node
   linkType: hard
 
@@ -3339,12 +3339,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^6.0.0":
-  version: 6.1.4
-  resolution: "minimatch@npm:6.1.4"
+"minimatch@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "minimatch@npm:7.0.0"
   dependencies:
     brace-expansion: ^2.0.1
-  checksum: 335aebafca4d5124401e266ae715f83538cdd9061c171135cdcc41fed019235f1b8aad38064476cac1f19cdcb51b32b6ccbf14df373333f703777513d51ec602
+  checksum: caceffe3489e022c7a8421100b3653ba4c03ebff1e704da8aa5d22c500ec679079163c214eeaf25a52840464fad67ab9a606394ef7302775c5d9d152a76b0ecc
   languageName: node
   linkType: hard
 
