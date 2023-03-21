@@ -350,8 +350,8 @@ __metadata:
   linkType: hard
 
 "@unional/fixture@npm:^3.2.11":
-  version: 3.2.13
-  resolution: "@unional/fixture@npm:3.2.13"
+  version: 3.2.14
+  resolution: "@unional/fixture@npm:3.2.14"
   dependencies:
     "@types/diff-match-patch": ^1.0.32
     chalk: ^5.2.0
@@ -370,8 +370,8 @@ __metadata:
     standard-log: ^11.5.0
     standard-log-color: ^11.5.0
     tersify: ^3.11.1
-    type-plus: ^5.0.0
-  checksum: bbea0af47b508074ec9009b9243f898a4024d07329c859312de2f097043d806cef49156bc323425a7cbc445e5b4901564122c785beb6352fef32a89a594bbb4f
+    type-plus: ^6.0.0
+  checksum: 021c4b8a9a0151f0a1b3736e441ffbb7483adb820905b6e8200381da42e2e4df9076baf1c1a5c4e209f5c3995cf544370264cee56fa0cff751e3d979afdbc234
   languageName: node
   linkType: hard
 
@@ -5294,6 +5294,16 @@ __metadata:
     tersify: ^3.11.1
     unpartial: ^1.0.4
   checksum: e979bb274f0ac41702207b6f580f82e3558f077fcd4eeb3efe106d804e0c38923bcc1b3ab76ce47f150e27e6edcadcdd40d0c5444db6415cf0abafd2921436fc
+  languageName: node
+  linkType: hard
+
+"type-plus@npm:^6.0.0":
+  version: 6.2.0
+  resolution: "type-plus@npm:6.2.0"
+  dependencies:
+    tersify: ^3.11.1
+    unpartial: ^1.0.4
+  checksum: 0887ee97b2c38c7e0de2fa16d7e25283293f201dcca2803cd1efcdfa245746004324c038226c57a04241ce054d3d53d108b068aac05739d4573a06dca799a1a7
   languageName: node
   linkType: hard
 
