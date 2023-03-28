@@ -3497,11 +3497,11 @@ __metadata:
   linkType: hard
 
 "mkdirp@npm:^2.0.0, mkdirp@npm:^2.1.3":
-  version: 2.1.5
-  resolution: "mkdirp@npm:2.1.5"
+  version: 2.1.6
+  resolution: "mkdirp@npm:2.1.6"
   bin:
     mkdirp: dist/cjs/src/bin.js
-  checksum: 039998e3a55f056f48dbd025ad1f5095c78464ed62bd666fcaf78d07fd15b73218aabe3237e7a500b3f6cacdce684f6bbbc9a773792dce7cceab0dc266e95238
+  checksum: 8a1d09ffac585e55f41c54f445051f5bc33a7de99b952bb04c576cafdf1a67bb4bae8cb93736f7da6838771fbf75bc630430a3a59e1252047d2278690bd150ee
   languageName: node
   linkType: hard
 
