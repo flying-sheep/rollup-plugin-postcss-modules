@@ -2,7 +2,7 @@ import { promises as fs } from 'fs'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import rmfr from 'rmfr'
 import ava from 'ava'
 import { baseline, Mismatch } from '@unional/fixture'

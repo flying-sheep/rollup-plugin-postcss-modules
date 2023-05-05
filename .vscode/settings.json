@@ -2,6 +2,7 @@
     "editor.insertSpaces": false,
     "eslint.validate": [
         "javascript",
-        "typescript"
-    ]
+        "typescript",
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib",
 }
