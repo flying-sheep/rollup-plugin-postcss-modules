@@ -36,7 +36,7 @@ type PostcssModulesTokens = Parameters<NonNullable<PostcssOptions['getJSON']>>[1
 
 class CSSExports {
 	writeDefinitions: boolean | DefinitionCB
-	exports: { [moduleName: string]: PostcssModulesTokens }
+	// exports: { [moduleName: string]: PostcssModulesTokens }
 
 	constructor(writeDefinitions: boolean | DefinitionCB) {
 		this.writeDefinitions = writeDefinitions
