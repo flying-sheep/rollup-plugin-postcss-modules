@@ -39,6 +39,7 @@
     "postcss": "^8.4.19",
     "rmfr": "^2.0.0",
     "rollup": "^3.2.5",
+    "style-inject": "^0.3.0",
     "typescript": "^5.0.2"
   },
   "dependencies": {
