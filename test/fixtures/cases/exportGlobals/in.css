@@ -1,1 +1,6 @@
-:global .global { color: blue } .local { color: red }
+:global .global {
+  color: blue;
+}
+.local {
+  color: red;
+}

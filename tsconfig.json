@@ -1,17 +1,17 @@
 {
-	"compilerOptions": {
-		"module": "ES2020",
-		"moduleResolution": "Node",
-		"target": "ES2020",
-		"lib": ["ES2020"],
-		//stronger types
-		"strict": true,
-		//more
-		"removeComments": true,
-		"sourceMap": true,
-		"declaration": true,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-	},
-	"include": ["index.ts"],
+  "compilerOptions": {
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    //stronger types
+    "strict": true,
+    //more
+    "removeComments": true,
+    "sourceMap": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+  },
+  "include": ["index.ts"],
 }
