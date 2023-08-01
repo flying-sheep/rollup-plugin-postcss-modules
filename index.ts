@@ -2,11 +2,11 @@ import { promises as fs } from 'fs'
 import * as path from 'path'
 
 import camelcase from 'camelcase'
-import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
-import * as postcssModules from 'postcss-modules'
 import reserved from 'reserved-words'
 import type { Plugin } from 'rollup'
 import type { Transformer } from 'postcss'
+import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
+import * as postcssModules from 'postcss-modules'
 
 function fixname(name: string) {
 	const ccName = camelcase(name)
