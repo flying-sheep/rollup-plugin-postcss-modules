@@ -38,7 +38,7 @@
     "mkdirp": "^3.0.1",
     "postcss": "^8.4.19",
     "rmfr": "^2.0.0",
-    "rollup": "^3.2.5",
+    "rollup": "^4.1.4",
     "style-inject": "^0.3.0",
     "typescript": "^5.0.2"
   },
