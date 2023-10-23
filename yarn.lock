@@ -365,9 +365,9 @@ __metadata:
   linkType: hard
 
 "@types/reserved-words@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@types/reserved-words@npm:0.1.0"
-  checksum: c578efb3e94fbf23c94631e7b8a5323ee0d02acdfb4cf4812975b08db2b50f647939d68aac95a31da546ac212c9b37ded1a9db2687b83d7d73cd68f6bd086372
+  version: 0.1.3
+  resolution: "@types/reserved-words@npm:0.1.3"
+  checksum: 79e52757badab84ab1f8d2d58f3c591841036ea5511a74eca929f54cb8faa78d12c27ce32bed8b26bc49543bbe9010a47b2e138402bf1b6ea05b7486e133d484
   languageName: node
   linkType: hard
 
