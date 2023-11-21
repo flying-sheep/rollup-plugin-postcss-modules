@@ -18,12 +18,12 @@
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.0",
-    "@types/node": "^20.1.0",
+    "@types/node": "^20.9.3",
     "@types/reserved-words": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@unional/fixture": "^3.2.11",
-    "@yarnpkg/sdks": "^3.0.0-rc.48",
+    "@yarnpkg/sdks": "^3.1.0",
     "aurelia-logging": "^1.5.2",
     "ava": "^5.0.1",
     "eslint": "^8.32.0",
@@ -43,7 +43,7 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "camelcase": "^6.0.0 || ^7.0.0",
+    "camelcase": "^6.0.0 || ^7.0.0 || ^8.0.0",
     "postcss-modules": "^6.0.0",
     "reserved-words": "^0.1.2",
     "rollup-plugin-postcss": "^4.0.2"
@@ -57,5 +57,5 @@
       "esm"
     ]
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@4.0.2"
 }
