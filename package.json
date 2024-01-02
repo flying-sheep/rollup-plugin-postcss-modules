@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc --watch",
-    "test": "npm run eslint && npm run ava",
-    "prepublishOnly": "npm run build && npm run test",
+    "test": "yarn run eslint && yarn run ava",
+    "prepublishOnly": "yarn run build && yarn run test",
     "eslint": "eslint '**/*.ts' '**/*.js'",
     "ava": "ava"
   },
@@ -25,7 +25,7 @@
     "@unional/fixture": "^3.2.11",
     "@yarnpkg/sdks": "^3.1.0",
     "aurelia-logging": "^1.5.2",
-    "ava": "^5.0.1",
+    "ava": "^6.0.1",
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-flying-sheep": "^5.2.0",
@@ -52,10 +52,7 @@
     "postcss": "^8.0.0"
   },
   "ava": {
-    "workerThreads": false,
-    "require": [
-      "esm"
-    ]
+    "workerThreads": false
   },
   "packageManager": "yarn@4.0.2"
 }
