@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc --watch",
-    "test": "npm run eslint && npm run ava",
-    "prepublishOnly": "npm run build && npm run test",
+    "test": "yarn run eslint && yarn run ava",
+    "prepublishOnly": "yarn run build && yarn run test",
     "eslint": "eslint '**/*.ts' '**/*.js'",
     "ava": "ava"
   },
@@ -52,10 +52,7 @@
     "postcss": "^8.0.0"
   },
   "ava": {
-    "workerThreads": false,
-    "require": [
-      "esm"
-    ]
+    "workerThreads": false
   },
   "packageManager": "yarn@4.0.2"
 }
