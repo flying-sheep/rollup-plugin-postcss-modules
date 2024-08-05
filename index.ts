@@ -1,12 +1,12 @@
-import { promises as fs } from 'fs'
-import * as path from 'path'
+import { promises as fs } from 'node:fs'
+import * as path from 'node:path'
 
 import camelcase from 'camelcase'
+import type { Transformer } from 'postcss'
+import * as postcssModules from 'postcss-modules'
 import reserved from 'reserved-words'
 import type { Plugin } from 'rollup'
-import type { Transformer } from 'postcss'
-import postcss, { PostCSSPluginConf } from 'rollup-plugin-postcss'
-import * as postcssModules from 'postcss-modules'
+import postcss, { type PostCSSPluginConf } from 'rollup-plugin-postcss'
 
 function fixname(name: string) {
 	const ccName = camelcase(name)
@@ -14,14 +14,20 @@ function fixname(name: string) {
 }
 
 const formatCSSDefinition = (name: string, classNames: string[]) => `\
-${classNames.filter((n) => !/-/.test(n)).map((t) => `export const ${t}: string`).join('\n')}
+${classNames
+	.filter((n) => !/-/.test(n))
+	.map((t) => `export const ${t}: string`)
+	.join('\n')}
 interface Namespace {
 	${classNames.map((t) => `${JSON.stringify(t)}: string,`).join('\n\t')}
 }
 declare const ${name}: Namespace
 export default ${name}`
 
-async function writeCSSDefinition(cssPath: string, classNames: string[]): Promise<string> {
+async function writeCSSDefinition(
+	cssPath: string,
+	classNames: string[],
+): Promise<string> {
 	const name = fixname(path.basename(cssPath, '.css'))
 	const definition = formatCSSDefinition(name, classNames)
 	const dPath = `${cssPath}.d.ts`
@@ -32,7 +38,9 @@ async function writeCSSDefinition(cssPath: string, classNames: string[]): Promis
 export type DefinitionCB = (dPath: string) => void | PromiseLike<void>
 
 type PostcssOptions = Parameters<postcssModules>[0]
-type PostcssModulesTokens = Parameters<NonNullable<PostcssOptions['getJSON']>>[1]
+type PostcssModulesTokens = Parameters<
+	NonNullable<PostcssOptions['getJSON']>
+>[1]
 
 class CSSExports {
 	writeDefinitions: boolean | DefinitionCB
@@ -70,7 +78,9 @@ export interface Options extends PostCSSPluginConf {
 
 type PluginFunc = (options: PostCSSPluginConf) => Plugin
 
-export default function eslintPluginPostCSSModules(options: Options = {}): Plugin {
+export default function eslintPluginPostCSSModules(
+	options: Options = {},
+): Plugin {
 	const {
 		plugins = [],
 		// own options
@@ -82,12 +92,18 @@ export default function eslintPluginPostCSSModules(options: Options = {}): Plugi
 	if ('getExport' in rest) {
 		throw new Error("'getExport' is no longer supported.")
 	}
-	if (plugins.some((p) => (p as Transformer).postcssPlugin === 'postcss-modules')) {
-		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use the `modules` config key for configuration.")
+	if (
+		plugins.some((p) => (p as Transformer).postcssPlugin === 'postcss-modules')
+	) {
+		throw new Error(
+			"'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin, you cannot specify your own. Use the `modules` config key for configuration.",
+		)
 	}
 	const modulesOptions = modules === true ? {} : modules
 	if (modulesOptions === false || modulesOptions.getJSON) {
-		throw new Error("'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`")
+		throw new Error(
+			"'rollup-plugin-postcss-modules' provides a 'postcss-modules' plugin and its `getJSON()`. You cannot specify `modules.getJSON`",
+		)
 	}
 
 	const { getJSON } = new CSSExports(writeDefinitions)

@@ -3,13 +3,13 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 import { createRequire } from 'module'
+import alias from '@rollup/plugin-alias'
+import { Mismatch, baseline } from '@unional/fixture'
+import ava from 'ava'
 import { mkdirp } from 'mkdirp'
 import rmfr from 'rmfr'
-import { baseline, Mismatch } from '@unional/fixture'
-import ts from 'typescript'
 import { rollup } from 'rollup'
-import ava from 'ava'
-import alias from '@rollup/plugin-alias'
+import ts from 'typescript'
 
 import postcss from '../index.js'
 
@@ -20,55 +20,59 @@ const styleInjectPath = require
 
 const here = dirname(fileURLToPath(import.meta.url))
 
-baseline(`${here}/fixtures`, ({
-	caseName, casePath, baselinePath, resultPath, match
-}) => ava(caseName, async (t) => {
-	await rmfr(resultPath)
-	await mkdirp(resultPath)
+baseline(
+	`${here}/fixtures`,
+	({ caseName, casePath, baselinePath, resultPath, match }) =>
+		ava(caseName, async (t) => {
+			await rmfr(resultPath)
+			await mkdirp(resultPath)
 
-	const definition = `${baselinePath}/in.css.d.ts`
-	if (await fs.stat(definition).catch(() => false)) {
-		const prog = ts.createProgram([definition], {})
-		const diagnostics = ts.getPreEmitDiagnostics(prog)
-		if (diagnostics.length !== 0) {
-			t.fail(ts.formatDiagnosticsWithColorAndContext(diagnostics, {
-				getCanonicalFileName: (path) => path,
-				getCurrentDirectory: ts.sys.getCurrentDirectory,
-				getNewLine: () => ts.sys.newLine
-			}))
-		}
-	}
+			const definition = `${baselinePath}/in.css.d.ts`
+			if (await fs.stat(definition).catch(() => false)) {
+				const prog = ts.createProgram([definition], {})
+				const diagnostics = ts.getPreEmitDiagnostics(prog)
+				if (diagnostics.length !== 0) {
+					t.fail(
+						ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+							getCanonicalFileName: (path) => path,
+							getCurrentDirectory: ts.sys.getCurrentDirectory,
+							getNewLine: () => ts.sys.newLine,
+						}),
+					)
+				}
+			}
 
-	const { default: opts } = await import(`${casePath}/options.js`)
-	const options = typeof opts === 'function' ? opts(resultPath) : opts
+			const { default: opts } = await import(`${casePath}/options.js`)
+			const options = typeof opts === 'function' ? opts(resultPath) : opts
 
-	const bundle = await rollup({
-		input: `${casePath}/in.css`,
-		output: { file: `${resultPath}/out.js` },
-		external: ['style-inject'],
-		plugins: [
-			postcss(options),
-			alias({
-				entries: { [styleInjectPath]: 'style-inject' },
-			}),
-		],
-	})
+			const bundle = await rollup({
+				input: `${casePath}/in.css`,
+				output: { file: `${resultPath}/out.js` },
+				external: ['style-inject'],
+				plugins: [
+					postcss(options),
+					alias({
+						entries: { [styleInjectPath]: 'style-inject' },
+					}),
+				],
+			})
 
-	await bundle.write({
-		file: `${resultPath}/out.js`,
-		format: 'es',
-	})
+			await bundle.write({
+				file: `${resultPath}/out.js`,
+				format: 'es',
+			})
 
-	const dPath = `${casePath}/in.css.d.ts`
-	if (await fs.stat(dPath).catch(() => false)) {
-		fs.rename(dPath, `${resultPath}/in.css.d.ts`)
-	}
+			const dPath = `${casePath}/in.css.d.ts`
+			if (await fs.stat(dPath).catch(() => false)) {
+				fs.rename(dPath, `${resultPath}/in.css.d.ts`)
+			}
 
-	try {
-		await match()
-	} catch (e) {
-		if (e instanceof Mismatch) t.fail(e.message)
-		else throw e
-	}
-	t.pass()
-}))
+			try {
+				await match()
+			} catch (e) {
+				if (e instanceof Mismatch) t.fail(e.message)
+				else throw e
+			}
+			t.pass()
+		}),
+)
