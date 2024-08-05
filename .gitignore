@@ -4,7 +4,7 @@
 !/.yarn/patches
 !/.yarn/plugins
 !/.yarn/releases
-!/.yarn/sdks
+!/.yarn/sdks/integrations.yml
 !/.yarn/versions
 
 /index.js

@@ -1,58 +1,48 @@
 {
-  "name": "rollup-plugin-postcss-modules",
-  "version": "2.1.1",
-  "description": "rollup-plugin-postcss wrapper with built-in CSS module and TypeScript support",
-  "type": "module",
-  "main": "index.js",
-  "typings": "index.d.ts",
-  "repository": "https://github.com/flying-sheep/rollup-plugin-postcss-modules.git",
-  "author": "Philipp A.",
-  "license": "GPL-3.0",
-  "scripts": {
-    "build": "tsc",
-    "start": "tsc --watch",
-    "test": "yarn run eslint && yarn run ava",
-    "prepublishOnly": "yarn run build && yarn run test",
-    "eslint": "eslint '**/*.ts' '**/*.js'",
-    "ava": "ava"
-  },
-  "devDependencies": {
-    "@rollup/plugin-alias": "^5.0.0",
-    "@types/node": "^22.0.0",
-    "@types/reserved-words": "^0.1.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "@unional/fixture": "^3.2.11",
-    "@yarnpkg/sdks": "^3.1.0",
-    "aurelia-logging": "^1.5.2",
-    "ava": "^6.0.1",
-    "eslint": "^8.32.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-flying-sheep": "^5.2.0",
-    "eslint-import-resolver-typescript": "^3.5.2",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-no-foreach": "^1.0.0",
-    "eslint-plugin-react": "^7.20.6",
-    "esm": "^3.2.25",
-    "mkdirp": "^3.0.1",
-    "postcss": "^8.4.19",
-    "rmfr": "^2.0.0",
-    "rollup": "^4.1.4",
-    "style-inject": "^0.3.0",
-    "typescript": "^5.4.2"
-  },
-  "dependencies": {
-    "camelcase": "^6.0.0 || ^7.0.0 || ^8.0.0",
-    "postcss-modules": "^6.0.0",
-    "reserved-words": "^0.1.2",
-    "rollup-plugin-postcss": "^4.0.2"
-  },
-  "peerDependencies": {
-    "postcss": "^8.0.0"
-  },
-  "ava": {
-    "workerThreads": false
-  },
-  "packageManager": "yarn@4.3.1"
+	"name": "rollup-plugin-postcss-modules",
+	"version": "2.1.1",
+	"description": "rollup-plugin-postcss wrapper with built-in CSS module and TypeScript support",
+	"type": "module",
+	"main": "index.js",
+	"typings": "index.d.ts",
+	"repository": "https://github.com/flying-sheep/rollup-plugin-postcss-modules.git",
+	"author": "Philipp A.",
+	"license": "GPL-3.0",
+	"scripts": {
+		"build": "tsc",
+		"start": "tsc --watch",
+		"prepublishOnly": "$npm_execpath run build && $npm_execpath run check && $npm_execpath run test",
+		"check": "biome check",
+		"test": "ava"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@rollup/plugin-alias": "^5.0.0",
+		"@types/node": "^22.0.0",
+		"@types/reserved-words": "^0.1.0",
+		"@unional/fixture": "^3.2.11",
+		"@yarnpkg/sdks": "^3.1.0",
+		"aurelia-logging": "^1.5.2",
+		"ava": "^6.0.1",
+		"esm": "^3.2.25",
+		"mkdirp": "^3.0.1",
+		"postcss": "^8.4.19",
+		"rmfr": "^2.0.0",
+		"rollup": "^4.1.4",
+		"style-inject": "^0.3.0",
+		"typescript": "^5.4.2"
+	},
+	"dependencies": {
+		"camelcase": "^8.0.0",
+		"postcss-modules": "^6.0.0",
+		"reserved-words": "^0.1.2",
+		"rollup-plugin-postcss": "^4.0.2"
+	},
+	"peerDependencies": {
+		"postcss": "^8.0.0"
+	},
+	"ava": {
+		"workerThreads": false
+	},
+	"packageManager": "yarn@4.3.1"
 }
