@@ -1,8 +1,8 @@
-import { promises as fs } from 'fs'
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { promises as fs } from 'node:fs'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-import { createRequire } from 'module'
+import { createRequire } from 'node:module'
 import alias from '@rollup/plugin-alias'
 import { Mismatch, baseline } from '@unional/fixture'
 import ava from 'ava'

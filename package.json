@@ -11,7 +11,7 @@
 	"scripts": {
 		"build": "tsc",
 		"start": "tsc --watch",
-		"test": "$npm_execpath run eslint && $npm_execpath run ava",
+		"test": "$npm_execpath run biome && $npm_execpath run ava",
 		"prepublishOnly": "yarn run build && yarn run test",
 		"biome": "biome check --fix",
 		"ava": "ava"

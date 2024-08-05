@@ -1,5 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"vcs": { "clientKind": "git", "useIgnoreFile": true },
 	"files": {
 		"ignore": [".yarn/**", "test/fixtures/results/**"],
 	},

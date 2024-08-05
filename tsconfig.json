@@ -11,7 +11,7 @@
 		"sourceMap": true,
 		"declaration": true,
 		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
 	},
-	"include": ["index.ts"]
+	"include": ["index.ts"],
 }
