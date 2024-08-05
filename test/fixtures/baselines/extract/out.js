@@ -1,3 +1,3 @@
-var _in = {}
+var _in = {};
 
-export { _in as default }
+export { _in as default };
