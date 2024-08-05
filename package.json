@@ -11,10 +11,9 @@
 	"scripts": {
 		"build": "tsc",
 		"start": "tsc --watch",
-		"test": "$npm_execpath run biome && $npm_execpath run ava",
-		"prepublishOnly": "yarn run build && yarn run test",
-		"biome": "biome check --fix",
-		"ava": "ava"
+		"prepublishOnly": "$npm_execpath run build && $npm_execpath run check && $npm_execpath run test",
+		"check": "biome check",
+		"test": "ava"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
