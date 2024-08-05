@@ -78,7 +78,7 @@ export interface Options extends PostCSSPluginConf {
 
 type PluginFunc = (options: PostCSSPluginConf) => Plugin
 
-export default function eslintPluginPostCSSModules(
+export default function rollupPluginPostCSSModules(
 	options: Options = {},
 ): Plugin {
 	const {
