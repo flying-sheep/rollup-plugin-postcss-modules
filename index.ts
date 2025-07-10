@@ -3,7 +3,6 @@ import * as path from 'node:path'
 
 import camelcase from 'camelcase'
 import type { Transformer } from 'postcss'
-import * as postcssModules from 'postcss-modules'
 import reserved from 'reserved-words'
 import type { Plugin } from 'rollup'
 import postcss, { type PostCSSPluginConf } from 'rollup-plugin-postcss'

@@ -1,10 +1,9 @@
 import { promises as fs } from 'node:fs'
+import { createRequire } from 'node:module'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-
-import { createRequire } from 'node:module'
 import alias from '@rollup/plugin-alias'
-import { Mismatch, baseline } from '@unional/fixture'
+import { baseline, Mismatch } from '@unional/fixture'
 import ava from 'ava'
 import { mkdirp } from 'mkdirp'
 import rmfr from 'rmfr'
