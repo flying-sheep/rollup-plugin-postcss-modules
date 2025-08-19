@@ -2,32 +2,6 @@
 	"$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
 	"vcs": { "clientKind": "git", "useIgnoreFile": true },
 	"files": {
-		"includes": ["**", "!.pnp*", "!.yarn", "!test/fixtures"],
-	},
-	"css": {
-		"parser": {
-			"cssModules": true,
-		},
-	},
-	"javascript": {
-		"formatter": {
-			"trailingCommas": "all",
-			"semicolons": "asNeeded",
-			"quoteStyle": "single",
-		},
-	},
-	"overrides": [
-		{
-			"includes": [".vscode/*.json", "**/*.jsonc", "tsconfig.json"],
-			"json": {
-				"formatter": {
-					"trailingCommas": "all",
-				},
-				"parser": {
-					"allowComments": true,
-					"allowTrailingCommas": true,
-				},
-			},
-		},
-	],
+		"includes": ["**", "!test/fixtures"]
+	}
 }
