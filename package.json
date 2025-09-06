@@ -16,7 +16,7 @@
 		"test": "ava"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.2.0",
+		"@biomejs/biome": "^2.2.3",
 		"@rollup/plugin-alias": "^5.0.0",
 		"@types/node": "^22.0.0",
 		"@types/reserved-words": "^0.1.0",
