@@ -44,5 +44,9 @@
 	"ava": {
 		"workerThreads": false
 	},
-	"packageManager": "yarn@4.5.3"
+	"packageManager": "yarn@4.12.0",
+	"//": "https://github.com/yarnpkg/berry/issues/3366",
+	"resolutions": {
+		"node-gyp": "npm:optional-pkg@1"
+	}
 }
