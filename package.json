@@ -16,25 +16,25 @@
 		"test": "ava"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.2.3",
-		"@rollup/plugin-alias": "^5.0.0",
-		"@types/node": "^22.0.0",
-		"@types/reserved-words": "^0.1.0",
-		"@unional/fixture": "^3.2.11",
-		"@yarnpkg/sdks": "^3.1.0",
+		"@biomejs/biome": "^2.4.5",
+		"@rollup/plugin-alias": "^6.0.0",
+		"@types/node": "^25.3.3",
+		"@types/reserved-words": "^0.1.4",
+		"@unional/fixture": "^3.2.17",
+		"@yarnpkg/sdks": "^3.2.3",
 		"aurelia-logging": "^1.5.2",
-		"ava": "^6.0.1",
+		"ava": "^7.0.0",
 		"esm": "^3.2.25",
 		"mkdirp": "^3.0.1",
-		"postcss": "^8.4.19",
+		"postcss": "^8.5.8",
 		"rmfr": "^2.0.0",
-		"rollup": "^4.1.4",
+		"rollup": "^4.59.0",
 		"style-inject": "^0.3.0",
-		"typescript": "^5.4.2"
+		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"camelcase": "^8.0.0",
-		"postcss-modules": "^6.0.0",
+		"camelcase": "^9.0.0",
+		"postcss-modules": "^6.0.1",
 		"reserved-words": "^0.1.2",
 		"rollup-plugin-postcss": "^4.0.2"
 	},
