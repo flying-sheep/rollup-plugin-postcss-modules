@@ -6,6 +6,10 @@
 	"main": "index.js",
 	"typings": "index.d.ts",
 	"repository": "https://github.com/flying-sheep/rollup-plugin-postcss-modules.git",
+	"homepage": "https://github.com/flying-sheep/rollup-plugin-postcss-modules#readme",
+	"bugs": {
+		"url": "https://github.com/flying-sheep/rollup-plugin-postcss-modules/issues"
+	},
 	"author": "Philipp A.",
 	"license": "GPL-3.0",
 	"scripts": {
