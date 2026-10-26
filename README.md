@@ -43,18 +43,18 @@ import typescript from 'rollup-plugin-typescript2'
 import autoprefixer from 'autoprefixer'
 
 export default {
-  entry: 'src/index.tsx',
-  dest: 'dist/bundle.js',
-  format: 'iife',
-  plugins: [
-    postcss({
-      extract: true, // extracts to `${basename(dest)}.css`
-      plugins: [autoprefixer()],
-      writeDefinitions: true,
-      // modules: { ... }
-    }),
-    typescript(),
-  ],
+	entry: 'src/index.tsx',
+	dest: 'dist/bundle.js',
+	format: 'iife',
+	plugins: [
+		postcss({
+			extract: true, // extracts to `${basename(dest)}.css`
+			plugins: [autoprefixer()],
+			writeDefinitions: true,
+			// modules: { ... }
+		}),
+		typescript(),
+	],
 }
 ```
 
