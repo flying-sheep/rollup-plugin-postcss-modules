@@ -1,7 +1,11 @@
 {
-	"[json][jsonc][typescript][javascript]": {
+	"[json][jsonc][typescript][javascript][yaml]": {
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "biomejs.biome",
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "jolars.panache",
+		"editor.formatOnSave": true,
 	},
 	"editor.insertSpaces": false,
 	"search.exclude": {

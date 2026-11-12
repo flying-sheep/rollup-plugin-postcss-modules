@@ -1,5 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"markdown": { "formatter": { "enabled": false } }, // handled by panache
 	"vcs": { "clientKind": "git", "useIgnoreFile": true },
 	"files": {
 		"includes": ["**", "!.pnp*", "!.yarn", "!test/fixtures"],
